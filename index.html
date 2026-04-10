@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUN Internal Affairs — Тимбилдинг</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+–bg: #0e0e11;
+–surface: #16161a;
+–surface2: #1e1e24;
+–border: #2a2a33;
+–accent: #c8f135;
+–accent2: #f1c135;
+–accent3: #35c8f1;
+–text: #e8e8f0;
+–muted: #6b6b80;
+}
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: ‘DM Sans’, sans-serif;
+min-height: 100vh;
+padding: 24px 16px 60px;
+}
+
+.header {
+text-align: center;
+margin-bottom: 28px;
+}
+
+.tag {
+display: inline-block;
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+letter-spacing: 0.12em;
+color: var(–accent);
+background: rgba(200,241,53,0.08);
+border: 1px solid rgba(200,241,53,0.25);
+padding: 4px 12px;
+border-radius: 100px;
+margin-bottom: 12px;
+text-transform: uppercase;
+}
+
+h1 {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: clamp(40px, 10vw, 68px);
+letter-spacing: 0.04em;
+line-height: 0.95;
+}
+
+h1 span { color: var(–accent); }
+
+.subtitle {
+margin-top: 8px;
+color: var(–muted);
+font-size: 14px;
+font-weight: 300;
+}
+
+.countdown {
+margin: 18px auto 0;
+display: inline-flex;
+gap: 14px;
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 14px;
+padding: 12px 22px;
+align-items: center;
+}
+
+.countdown-item { text-align: center; }
+.countdown-num {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 30px;
+color: var(–accent);
+line-height: 1;
+}
+.countdown-label {
+font-size: 9px;
+color: var(–muted);
+letter-spacing: 0.08em;
+text-transform: uppercase;
+font-family: ‘DM Mono’, monospace;
+}
+.countdown-sep {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 26px;
+color: var(–border);
+padding-bottom: 4px;
+}
+
+.progress-bar-wrap {
+max-width: 620px;
+margin: 28px auto 20px;
+}
+
+.progress-meta {
+display: flex;
+justify-content: space-between;
+margin-bottom: 6px;
+font-size: 12px;
+color: var(–muted);
+font-family: ‘DM Mono’, monospace;
+}
+.progress-meta span:last-child { color: var(–accent); font-weight: 500; }
+
+.progress-track {
+height: 5px;
+background: var(–surface2);
+border-radius: 100px;
+overflow: hidden;
+}
+.progress-fill {
+height: 100%;
+background: linear-gradient(90deg, var(–accent), var(–accent2));
+border-radius: 100px;
+transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* TIMELINE */
+.timeline-wrap {
+max-width: 620px;
+margin: 0 auto 28px;
+}
+
+.timeline-title {
+font-size: 10px;
+font-family: ‘DM Mono’, monospace;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–muted);
+margin-bottom: 10px;
+}
+
+.timeline {
+display: flex;
+gap: 0;
+position: relative;
+}
+
+.timeline::before {
+content: ‘’;
+position: absolute;
+top: 14px;
+left: 0; right: 0;
+height: 2px;
+background: var(–border);
+z-index: 0;
+}
+
+.tl-step {
+flex: 1;
+text-align: center;
+position: relative;
+z-index: 1;
+}
+
+.tl-dot {
+width: 28px;
+height: 28px;
+border-radius: 50%;
+background: var(–surface2);
+border: 2px solid var(–border);
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 6px;
+font-size: 11px;
+transition: all 0.3s;
+}
+
+.tl-step.active .tl-dot {
+background: var(–accent);
+border-color: var(–accent);
+color: #0e0e11;
+font-weight: 700;
+}
+
+.tl-step.done .tl-dot {
+background: rgba(200,241,53,0.15);
+border-color: var(–accent);
+color: var(–accent);
+}
+
+.tl-date {
+font-family: ‘DM Mono’, monospace;
+font-size: 9px;
+color: var(–accent);
+font-weight: 500;
+}
+
+.tl-label {
+font-size: 9.5px;
+color: var(–muted);
+margin-top: 2px;
+line-height: 1.3;
+}
+
+/* CARDS */
+.persons-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+gap: 12px;
+max-width: 900px;
+margin: 0 auto;
+}
+
+.person-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 16px;
+overflow: hidden;
+transition: border-color 0.2s, transform 0.15s;
+}
+
+.person-card:hover { border-color: rgba(200,241,53,0.25); transform: translateY(-2px); }
+.person-card.me { border-color: rgba(200,241,53,0.
+35); }
+
+.person-header {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 14px 16px;
+border-bottom: 1px solid var(–border);
+cursor: pointer;
+user-select: none;
+}
+
+.avatar {
+width: 36px;
+height: 36px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 15px;
+flex-shrink: 0;
+color: #0e0e11;
+}
+
+.person-info { flex: 1; min-width: 0; }
+.person-name {
+font-size: 14px;
+font-weight: 600;
+color: var(–text);
+display: flex;
+align-items: center;
+gap: 6px;
+}
+.me-badge {
+font-size: 9px;
+font-family: ‘DM Mono’, monospace;
+background: rgba(200,241,53,0.12);
+color: var(–accent);
+border: 1px solid rgba(200,241,53,0.25);
+padding: 1px 6px;
+border-radius: 100px;
+text-transform: uppercase;
+letter-spacing: 0.06em;
+}
+.person-role {
+font-size: 11px;
+color: var(–muted);
+font-family: ‘DM Mono’, monospace;
+margin-top: 2px;
+}
+
+.person-progress {
+display: flex;
+align-items: center;
+gap: 6px;
+flex-shrink: 0;
+}
+.mini-progress {
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+color: var(–accent);
+font-weight: 500;
+}
+.chevron {
+color: var(–muted);
+font-size: 11px;
+transition: transform 0.2s;
+}
+.person-card.open .chevron { transform: rotate(180deg); }
+
+.tasks-list { display: none; padding: 6px 12px 12px; }
+.person-card.open .tasks-list { display: block; }
+
+.task-item {
+display: flex;
+align-items: flex-start;
+gap: 10px;
+padding: 9px 8px;
+border-radius: 10px;
+cursor: pointer;
+transition: background 0.15s;
+}
+.task-item:hover { background: var(–surface2); }
+.task-item.done { opacity: 0.55; }
+
+.task-checkbox {
+width: 17px;
+height: 17px;
+border-radius: 5px;
+border: 1.5px solid var(–border);
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+margin-top: 2px;
+transition: all 0.15s;
+}
+.task-item.done .task-checkbox {
+background: var(–accent);
+border-color: var(–accent);
+}
+.task-item.done .task-checkbox::after {
+content: ‘✓’;
+font-size: 10px;
+color: #0e0e11;
+font-weight: 700;
+}
+
+.task-content { flex: 1; }
+.task-text {
+font-size: 13px;
+color: var(–text);
+line-height: 1.4;
+}
+.task-item.done .task-text {
+text-decoration: line-through;
+color: var(–muted);
+}
+
+/* note — first-person voice */
+.task-note {
+font-size: 11px;
+color: var(–muted);
+font-style: italic;
+margin-top: 2px;
+line-height: 1.35;
+}
+
+.task-deadline {
+display: inline-flex;
+align-items: center;
+gap: 3px;
+margin-top: 5px;
+font-size: 10px;
+font-family: ‘DM Mono’, monospace;
+padding: 2px 8px;
+border-radius: 100px;
+font-weight: 500;
+}
+.deadline-urgent { background: rgba(241,65,53,0.1); color: #f14135; border: 1px solid rgba(241,65,53,0.2); }
+.deadline-warn { background: rgba(241,193,53,0.1); color: var(–accent2); border: 1px solid rgba(241,193,53,0.2); }
+.deadline-ok { background: rgba(200,241,53,0.08); color: var(–accent); border: 1px solid rgba(200,241,53,0.18); }
+.deadline-done { background: rgba(138,184,74,0.1); color: #8ab84a; border: 1px solid rgba(138,184,74,0.2); }
+
+.section-label {
+font-size: 10px;
+font-family: ‘DM Mono’, monospace;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–muted);
+padding: 6px 8px 3px;
+}
+
+.reset-btn {
+display: block;
+margin: 20px auto 0;
+background: transparent;
+border: 1px solid var(–border);
+color: var(–muted);
+padding: 7px 20px;
+border-radius: 100px;
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+cursor: pointer;
+transition: all 0.2s;
+}
+.reset-btn:hover { border-color: var(–accent); color: var(–accent); }
+</style>
+
+</head>
+<body>
+
+<div class="header">
+  <div class="tag">MUN · Internal Affairs · Оркен</div>
+  <h1>ТИМБИЛДИНГ<br><span>17–18 АПРЕЛЯ</span></h1>
+  <p class="subtitle">Астана · 15 человек · 19:00 — 00:00+</p>
+  <div class="countdown">
+    <div class="countdown-item"><div class="countdown-num" id="cd-d">7</div><div class="countdown-label">дней</div></div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-item"><div class="countdown-num" id="cd-h">00</div><div class="countdown-label">часов</div></div>
+    <div class="countdown-sep">:</div>
+<div class="countdown-item"><div class="countdown-num" id="cd-m">00</div><div class="countdown-label">минут</div></div>
+  </div>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-meta">
+    <span>Мой прогресс как организатора</span>
+    <span id="global-pct">0%</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="global-bar" style="width:0%"></div>
+  </div>
+</div>
+
+<div class="timeline-wrap">
+  <div class="timeline-title">Дорожная карта</div>
+  <div class="timeline">
+    <div class="tl-step active" id="tl0">
+      <div class="tl-dot">📢</div>
+      <div class="tl-date">10–11 апр</div>
+      <div class="tl-label">Анонс<br>и сумма</div>
+    </div>
+    <div class="tl-step" id="tl1">
+      <div class="tl-dot">💰</div>
+      <div class="tl-date">12 апр</div>
+      <div class="tl-label">Сбор<br>денег</div>
+    </div>
+    <div class="tl-step" id="tl2">
+      <div class="tl-dot">🏠</div>
+      <div class="tl-date">12 апр</div>
+      <div class="tl-label">Бронь<br>коттеджа</div>
+    </div>
+    <div class="tl-step" id="tl3">
+      <div class="tl-dot">🎮</div>
+      <div class="tl-date">15–16 апр</div>
+      <div class="tl-label">Игры<br>и призы</div>
+    </div>
+    <div class="tl-step" id="tl4">
+      <div class="tl-dot">🍚</div>
+      <div class="tl-date">17 апр</div>
+      <div class="tl-label">Заказ<br>еды</div>
+    </div>
+    <div class="tl-step" id="tl5">
+      <div class="tl-dot">🎉</div>
+      <div class="tl-date">17 апр</div>
+      <div class="tl-label">Тимбилдинг!</div>
+    </div>
+  </div>
+</div>
+
+<div class="persons-grid" id="grid"></div>
+<button class="reset-btn" onclick="resetAll()">Сбросить все галочки</button>
+
+<script>
+const COLORS = ['#c8f135','#f1c135','#35c8f1','#f17c35','#c135f1','#35f1a0','#f13587'];
+const STORAGE_KEY = 'mun_tb_v2';
+
+const people = [
+  {
+    name: 'Оркен',
+    me: true,
+    role: 'Хэд · Еда и напитки · Финал решений',
+    tasks: [
+      {
+        text: 'Объявляю сумму взноса команде и даю отмашку Ассиме на анонс',
+        note: 'Говорю сумму → Ассима сразу шлёт анонс в Telegram',
+        deadline: '10 апр, сегодня', urgency: 'urgent'
+      },
+      {
+        text: 'Выбираю финальный вариант коттеджа из вариантов Даниала/Дарии/Дамиры',
+        note: 'Смотрю что они скинули, говорю "берём этот" и бронирую',
+        deadline: '12 апр', urgency: 'urgent'
+      },
+      {
+        text: 'Бронирую коттедж и оплачиваю после сбора денег',
+        note: 'Беру деньги у Саята → плачу хозяину',
+        deadline: '12 апр', urgency: 'urgent'
+      },
+      {
+        text: 'Заказываю еду с доставкой к дому — плов + манты (Карима Плов, доставка 24/7)',
+        note: 'Карима Плов: +7 700 884 00 00 — заказ на 18:30, 17 апр',
+        deadline: '16 апр', urgency: 'warn'
+      },
+      {
+        text: 'Заказываю напитки с доставкой (Kaspi магазин / Arbuz.kz)',
+        note: 'Газировка, вода, сок, чай — доставка к коттеджу к 18:30',
+        deadline: '16 апр', urgency: 'warn'
+      },
+      {
+        text: 'Веду всё мероприятие — icebreakers, игры, церемония наград',
+        note: 'Я — главный ведущий вечером. Подготовлюсь заранее.',
+        deadline: '17 апр, 19:00', urgency: 'ok'
+      },
+    ]
+  },
+  {
+    name: 'Ассима',
+    me: false,
+    role: 'Анонс + Игры и icebreakers',
+    tasks: [
+      {
+        text: 'Я прошу Ассиму отправить анонс в Telegram-чат сразу после того как объявляю сумму',
+        note: 'Текст анонса уже готов — скидываю ей.',
+        deadline: '10–11 апр', urgency: 'urgent'
+      },
+      {
+        text: 'Я прошу Ассиму с Гулим придумать 3–4 icebreaker-игры на вечер',
+        note: 'Who Knows Who, Would You Rather, Мафия — пусть выберут лучшее',
+        deadline: '15 апр', urgency: 'warn'
+      },
+      {
+        text: 'Я прошу Ассиму с Гулим распечатать красивые сертификаты для победителей',
+        note: 'Canva → шаблон сертификата → распечатать 5–7 шт с разными номинациями',
+        deadline: '16 апр', urgency: 'warn'
+      },
+    ]
+  },
+  {
+    name: 'Гулим',
+    me: false,
+    role: 'Игры и призы (с Ассимой)',
+    tasks: [
+      {text: 'Я прошу Гулим помочь Ассиме подготовить сценарий игрового блока',
+        note: 'Блок 20:45 — 21:45: Icebreaker → Командная игра → Would You Rather',
+        deadline: '15 апр', urgency: 'warn'
+      },
+      {
+        text: 'Я прошу Гулим придумать смешные номинации для сертификатов',
+        note: 'Например: "Лучший дипломат", "Душа компании", "MVP вечера" и тд',
+        deadline: '15 апр', urgency: 'warn'
+      },
+      {
+        text: 'Я прошу Гулим взять с собой Bluetooth-колонку на случай если в доме нет аппаратуры',
+        note: 'Уточню у хозяина есть ли звук — если есть, колонка не нужна',
+        deadline: '17 апр', urgency: 'ok'
+      },
+    ]
+  },
+  {
+    name: 'Саят',
+    me: false,
+    role: 'Сбор денег',
+    tasks: [
+      {
+        text: 'Я прошу Саята начать собирать деньги сразу после выхода анонса',
+        note: 'Он пишет каждому лично или в чат — кто ещё не сдал',
+        deadline: '11 апр', urgency: 'urgent'
+      },
+      {
+        text: 'Я прошу Саята вести список: кто сдал, кто нет',
+        note: 'Таблица в телефоне или Google Sheets — чтобы видеть картину',
+        deadline: '12 апр', urgency: 'urgent'
+      },
+      {
+        text: 'Я прошу Саята передать мне все собранные деньги',
+        note: 'Получаю деньги → сразу бронирую коттедж',
+        deadline: '12 апр, до 18:00', urgency: 'urgent'
+      },
+    ]
+  },
+  {
+    name: 'Даниал',
+    me: false,
+    role: 'Поиск коттеджа (с Дарией и Дамирой)',
+    tasks: [
+      {
+        text: 'Я прошу Даниала найти 2–3 варианта коттеджа на krisha.kz',
+        note: 'Фильтр: дом / мероприятия / посуточно / Астана / свободно 17–18 апр',
+        deadline: '12 апр', urgency: 'urgent'
+      },
+      {
+        text: 'Я прошу его проверить что дата 17–18 апр свободна у хозяина',
+        note: 'Позвонить и уточнить — не просто написать',
+        deadline: '12 апр', urgency: 'urgent'
+      },
+      {
+        text: 'Я прошу Даниала скинуть мне ссылки + цену + контакт хозяина',
+        note: 'Целевая цена: 50 000–80 000 тг за сутки',
+        deadline: '12 апр', urgency: 'urgent'
+      },
+    ]
+  },
+  {
+    name: 'Дария',
+    me: false,
+    role: 'Поиск коттеджа (с Даниалом и Дамирой)',
+    tasks: [
+      {
+        text: 'Я прошу Дарию искать варианты параллельно с Даниалом',
+        note: 'Разные районы Астаны — левый берег, Юго-Восток, Косшы',
+        deadline: '12 апр', urgency: 'urgent'
+      },
+      {
+        text: 'Я прошу её сравнить варианты по цене, вместимости и наличию аппаратуры',
+        note: 'Идеально: зал на 20+ чел, музыка/аппаратура в стоимости',
+        deadline: '12 апр', urgency: 'urgent'
+      },
+    ]
+  },
+  {
+    name: 'Дамира',
+    me: false,
+    role: 'Поиск коттеджа (с Даниалом и Дарией)',
+    tasks: [
+      {
+        text: 'Я прошу Дамиру сделать сравнительную таблицу вариантов коттеджей',
+        note: 'Адрес | Цена | Вместимость | Аппаратура | Контакт — в одном сообщении мне',
+        deadline: '12 апр', urgency: 'urgent'
+      },
+      {
+        text: 'Я прошу Дамиру позвонить хозяевам топ-2 вариантов и уточнить условия',
+        note: 'Можно ли торговаться? Есть ли депозит? Во сколько заезд?',
+        deadline: '12 апр', urgency: 'urgent'
+      },
+    ]
+  },
+];
+
+const STORAGE = (() => {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
+})();
+
+function save() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(STORAGE)); } catch {}
+}
+
+function tid(pi, ti) { return ${pi}_${ti}; }
+
+function renderAll() {
+  const grid = document.getElementById('grid');
+  const open = [...grid.querySelectorAll('.person-card.open')].map(c => c.dataset.pi);
+  grid.innerHTML = '';
+
+  let total = 0, done = 0;
+
+  people.forEach((person, pi) => {
+    const pDone = person.tasks.filter((_, ti) => STORAGE[tid(pi, ti)]).length;
+    const pTotal = person.tasks.length;
+    total += pTotal; done += pDone;
+
+    const color = COLORS[pi % COLORS.length];
+    const initials = person.name.slice(0, 2).toUpperCase();
+
+    const card = document.createElement('div');
+    card.className = person-card${person.
+me ? ' me' : ''}${open.includes(String(pi)) ? ' open' : ''};
+    card.dataset.pi = pi;
+
+    card.innerHTML = `
+      <div class="person-header" onclick="toggleCard(${pi})">
+        <div class="avatar" style="background:${color}">${initials}</div>
+        <div class="person-info">
+          <div class="person-name">${person.name}${person.me ? '<span class="me-badge">я</span>' : ''}</div>
+          <div class="person-role">${person.role}</div>
+        </div>
+        <div class="person-progress">
+          <div class="mini-progress">${pDone}/${pTotal}</div>
+          <div class="chevron">▼</div>
+        </div>
+      </div>
+      <div class="tasks-list">
+        <div class="section-label">Мои задачи по этому человеку</div>
+        ${person.tasks.map((task, ti) => {
+          const id = tid(pi, ti);
+          const isDone = !!STORAGE[id];
+          const dc = isDone ? 'deadline-done' : deadline-${task.urgency};
+          const dp = isDone ? '✓ ' : task.urgency === 'urgent' ? '🔴 ' : task.urgency === 'warn' ? '🟡 ' : '🟢 ';
+          return `
+            <div class="task-item${isDone ? ' done' : ''}" onclick="toggle(${pi},${ti})">
+              <div class="task-checkbox"></div>
+              <div class="task-content">
+                <div class="task-text">${task.text}</div>
+                ${task.note ? <div class="task-note">${task.note}</div> : ''}
+                <span class="task-deadline ${dc}">${dp}до ${task.deadline}</span>
+              </div>
+            </div>`;
+        }).join('')}
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  const pct = total ? Math.round(done / total * 100) : 0;
+  document.getElementById('global-bar').style.width = pct + '%';
+  document.getElementById('global-pct').textContent = pct + '%';
+}
+
+function toggleCard(pi) {
+  const card = document.querySelector(`.person-card[data-pi="${pi}"]`);
+  card.classList.toggle('open');
+}
+
+function toggle(pi, ti) {
+  const id = tid(pi, ti);
+  STORAGE[id] = !STORAGE[id];
+  save();
+  renderAll();
+  setTimeout(() => {
+    const card = document.querySelector(`.person-card[data-pi="${pi}"]`);
+    if (card) card.classList.add('open');
+  }, 10);
+}
+
+function resetAll() {
+  if (confirm('Сбросить все галочки?')) {
+    Object.keys(STORAGE).forEach(k => delete STORAGE[k]);
+    save(); renderAll();
+  }
+}
+
+function updateCountdown() {
+  const diff = new Date('2026-04-17T19:00:00+06:00') - new Date();
+  if (diff <= 0) return;
+  document.getElementById('cd-d').textContent = Math.floor(diff / 86400000);
+  document.getElementById('cd-h').textContent = String(Math.floor(diff % 86400000 / 3600000)).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(Math.floor(diff % 3600000 / 60000)).padStart(2,'0');
+}
+
+renderAll();
+updateCountdown();
+setInterval(updateCountdown, 30000);
+
+// Open Оркен card by default
+setTimeout(() => {
+  const first = document.querySelector('.person-card');
+  if (first) first.classList.add('open');
+}, 50);
+</script>
+
+</body>
+</html>
