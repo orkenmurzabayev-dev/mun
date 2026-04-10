@@ -4,20 +4,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MUN Internal Affairs — Тимбилдинг</title>
+<title>MUN Internal Affairs — Тимбилдинг 17 апреля</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
-
 :root {
-–bg: #0e0e11;
-–surface: #16161a;
-–surface2: #1e1e24;
-–border: #2a2a33;
-–accent: #c8f135;
-–accent2: #f1c135;
-–accent3: #35c8f1;
-–text: #e8e8f0;
-–muted: #6b6b80;
+  --bg: #0b0b0e;
+  --card: #13131a;
+  --card2: #1a1a24;
+  --border: #252530;
+  --green: #b8f000;
+  --yellow: #f0c000;
+  --blue: #00c8f0;
+  --red: #f04040;
+  --text: #e6e6f0;
+  --muted: #5a5a72;
+  --radius: 14px;
 }
 
 - { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,479 +25,401 @@
 body {
 background: var(–bg);
 color: var(–text);
-font-family: ‘DM Sans’, sans-serif;
+font-family: -apple-system, BlinkMacSystemFont, ‘Segoe UI’, system-ui, sans-serif;
 min-height: 100vh;
-padding: 24px 16px 60px;
+padding: 20px 14px 60px;
+-webkit-font-smoothing: antialiased;
 }
 
-.header {
-text-align: center;
-margin-bottom: 28px;
-}
+/* ── HEADER ── */
+.header { text-align: center; margin-bottom: 28px; }
 
-.tag {
+.chip {
 display: inline-block;
-font-family: ‘DM Mono’, monospace;
-font-size: 11px;
-letter-spacing: 0.12em;
-color: var(–accent);
-background: rgba(200,241,53,0.08);
-border: 1px solid rgba(200,241,53,0.25);
-padding: 4px 12px;
-border-radius: 100px;
-margin-bottom: 12px;
-text-transform: uppercase;
-}
-
-h1 {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: clamp(40px, 10vw, 68px);
-letter-spacing: 0.04em;
-line-height: 0.95;
-}
-
-h1 span { color: var(–accent); }
-
-.subtitle {
-margin-top: 8px;
-color: var(–muted);
-font-size: 14px;
-font-weight: 300;
-}
-
-.countdown {
-margin: 18px auto 0;
-display: inline-flex;
-gap: 14px;
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: 14px;
-padding: 12px 22px;
-align-items: center;
-}
-
-.countdown-item { text-align: center; }
-.countdown-num {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 30px;
-color: var(–accent);
-line-height: 1;
-}
-.countdown-label {
-font-size: 9px;
-color: var(–muted);
-letter-spacing: 0.08em;
-text-transform: uppercase;
-font-family: ‘DM Mono’, monospace;
-}
-.countdown-sep {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 26px;
-color: var(–border);
-padding-bottom: 4px;
-}
-
-.progress-bar-wrap {
-max-width: 620px;
-margin: 28px auto 20px;
-}
-
-.progress-meta {
-display: flex;
-justify-content: space-between;
-margin-bottom: 6px;
-font-size: 12px;
-color: var(–muted);
-font-family: ‘DM Mono’, monospace;
-}
-.progress-meta span:last-child { color: var(–accent); font-weight: 500; }
-
-.progress-track {
-height: 5px;
-background: var(–surface2);
-border-radius: 100px;
-overflow: hidden;
-}
-.progress-fill {
-height: 100%;
-background: linear-gradient(90deg, var(–accent), var(–accent2));
-border-radius: 100px;
-transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
-}
-
-/* TIMELINE */
-.timeline-wrap {
-max-width: 620px;
-margin: 0 auto 28px;
-}
-
-.timeline-title {
 font-size: 10px;
-font-family: ‘DM Mono’, monospace;
-letter-spacing: 0.1em;
+font-family: ‘SF Mono’, ‘Fira Code’, monospace;
+letter-span: 0.1em;
+color: var(–green);
+background: rgba(184,240,0,0.07);
+border: 1px solid rgba(184,240,0,0.2);
+padding: 3px 10px;
+border-radius: 100px;
 text-transform: uppercase;
-color: var(–muted);
+letter-spacing: 0.1em;
 margin-bottom: 10px;
 }
 
-.timeline {
-display: flex;
-gap: 0;
-position: relative;
+.title {
+font-size: clamp(36px, 9vw, 64px);
+font-weight: 800;
+line-height: 1;
+letter-spacing: -0.02em;
+margin-bottom: 6px;
 }
 
-.timeline::before {
+.title .green { color: var(–green); }
+
+.sub {
+font-size: 13px;
+color: var(–muted);
+font-weight: 400;
+}
+
+/* ── COUNTDOWN ── */
+.countdown {
+display: inline-flex;
+gap: 12px;
+align-items: center;
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 12px;
+padding: 10px 20px;
+margin-top: 14px;
+}
+.cd-item { text-align: center; }
+.cd-num {
+font-size: 28px;
+font-weight: 800;
+color: var(–green);
+line-height: 1;
+font-variant-numeric: tabular-nums;
+}
+.cd-lbl {
+font-size: 9px;
+color: var(–muted);
+text-transform: uppercase;
+letter-spacing: 0.08em;
+font-family: ‘SF Mono’, monospace;
+}
+.cd-sep { font-size: 22px; font-weight: 800; color: var(–border); padding-bottom: 4px; }
+
+/* ── PROGRESS ── */
+.prog-wrap { max-width: 600px; margin: 24px auto 20px; }
+.prog-meta {
+display: flex;
+justify-content: space-between;
+font-size: 11px;
+font-family: ‘SF Mono’, monospace;
+color: var(–muted);
+margin-bottom: 6px;
+}
+.prog-meta b { color: var(–green); font-weight: 600; }
+.prog-track { height: 4px; background: var(–card2); border-radius: 100px; overflow: hidden; }
+.prog-fill {
+height: 100%;
+background: linear-gradient(90deg, var(–green), var(–yellow));
+border-radius: 100px;
+transition: width 0.4s ease;
+}
+
+/* ── TIMELINE ── */
+.tl-wrap { max-width: 600px; margin: 0 auto 24px; }
+.tl-label-top {
+font-size: 10px;
+font-family: ‘SF Mono’, monospace;
+color: var(–muted);
+text-transform: uppercase;
+letter-spacing: 0.1em;
+margin-bottom: 10px;
+}
+.tl {
+display: flex;
+position: relative;
+}
+.tl::before {
 content: ‘’;
 position: absolute;
-top: 14px;
-left: 0; right: 0;
+top: 13px; left: 0; right: 0;
 height: 2px;
 background: var(–border);
 z-index: 0;
 }
-
-.tl-step {
-flex: 1;
-text-align: center;
-position: relative;
-z-index: 1;
-}
-
+.tl-step { flex: 1; text-align: center; position: relative; z-index: 1; }
 .tl-dot {
-width: 28px;
-height: 28px;
+width: 26px; height: 26px;
 border-radius: 50%;
-background: var(–surface2);
+background: var(–card2);
 border: 2px solid var(–border);
-display: flex;
-align-items: center;
-justify-content: center;
-margin: 0 auto 6px;
-font-size: 11px;
+display: flex; align-items: center; justify-content: center;
+margin: 0 auto 5px;
+font-size: 10px;
 transition: all 0.3s;
 }
+.tl-step.active .tl-dot { background: var(–green); border-color: var(–green); }
+.tl-d { font-size: 8px; font-family: ‘SF Mono’, monospace; color: var(–green); font-weight: 600; }
+.tl-n { font-size: 9px; color: var(–muted); margin-top: 1px; line-height: 1.3; }
 
-.tl-step.active .tl-dot {
-background: var(–accent);
-border-color: var(–accent);
-color: #0e0e11;
-font-weight: 700;
-}
-
-.tl-step.done .tl-dot {
-background: rgba(200,241,53,0.15);
-border-color: var(–accent);
-color: var(–accent);
-}
-
-.tl-date {
-font-family: ‘DM Mono’, monospace;
-font-size: 9px;
-color: var(–accent);
-font-weight: 500;
-}
-
-.tl-label {
-font-size: 9.5px;
-color: var(–muted);
-margin-top: 2px;
-line-height: 1.3;
-}
-
-/* CARDS */
-.persons-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-gap: 12px;
-max-width: 900px;
-margin: 0 auto;
-}
-
-.person-card {
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: 16px;
+/* ── ANONS BLOCK ── */
+.anons-card {
+max-width: 600px;
+margin: 0 auto 20px;
+background: var(–card);
+border: 1px solid rgba(184,240,0,0.2);
+border-radius: var(–radius);
 overflow: hidden;
-transition: border-color 0.2s, transform 0.15s;
 }
-
-.person-card:hover { border-color: rgba(200,241,53,0.25); transform: translateY(-2px); }
-.person-card.me { border-color: rgba(200,241,53,0.
-35); }
-
-.person-header {
+.anons-header {
 display: flex;
 align-items: center;
-gap: 12px;
-padding: 14px 16px;
+justify-content: space-between;
+padding: 12px 16px;
 border-bottom: 1px solid var(–border);
 cursor: pointer;
 user-select: none;
 }
-
-.avatar {
-width: 36px;
-height: 36px;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 15px;
-flex-shrink: 0;
-color: #0e0e11;
-}
-
-.person-info { flex: 1; min-width: 0; }
-.person-name {
-font-size: 14px;
-font-weight: 600;
-color: var(–text);
-display: flex;
-align-items: center;
-gap: 6px;
-}
-.me-badge {
-font-size: 9px;
-font-family: ‘DM Mono’, monospace;
-background: rgba(200,241,53,0.12);
-color: var(–accent);
-border: 1px solid rgba(200,241,53,0.25);
-padding: 1px 6px;
-border-radius: 100px;
-text-transform: uppercase;
-letter-spacing: 0.06em;
-}
-.person-role {
-font-size: 11px;
-color: var(–muted);
-font-family: ‘DM Mono’, monospace;
-margin-top: 2px;
-}
-
-.person-progress {
-display: flex;
-align-items: center;
-gap: 6px;
-flex-shrink: 0;
-}
-.mini-progress {
-font-family: ‘DM Mono’, monospace;
-font-size: 11px;
-color: var(–accent);
-font-weight: 500;
-}
-.chevron {
-color: var(–muted);
-font-size: 11px;
-transition: transform 0.2s;
-}
-.person-card.open .chevron { transform: rotate(180deg); }
-
-.tasks-list { display: none; padding: 6px 12px 12px; }
-.person-card.open .tasks-list { display: block; }
-
-.task-item {
-display: flex;
-align-items: flex-start;
-gap: 10px;
-padding: 9px 8px;
+.anons-header-left { display: flex; align-items: center; gap: 8px; }
+.anons-icon { font-size: 16px; }
+.anons-title { font-size: 13px; font-weight: 600; }
+.anons-sub { font-size: 11px; color: var(–muted); }
+.anons-toggle { font-size: 11px; color: var(–muted); transition: transform 0.2s; }
+.anons-card.open .anons-toggle { transform: rotate(180deg); }
+.anons-body { display: none; padding: 14px 16px; }
+.anons-card.open .anons-body { display: block; }
+.anons-text {
+background: var(–card2);
+border: 1px solid var(–border);
 border-radius: 10px;
-cursor: pointer;
-transition: background 0.15s;
-}
-.task-item:hover { background: var(–surface2); }
-.task-item.done { opacity: 0.55; }
-
-.task-checkbox {
-width: 17px;
-height: 17px;
-border-radius: 5px;
-border: 1.5px solid var(–border);
-display: flex;
-align-items: center;
-justify-content: center;
-flex-shrink: 0;
-margin-top: 2px;
-transition: all 0.15s;
-}
-.task-item.done .task-checkbox {
-background: var(–accent);
-border-color: var(–accent);
-}
-.task-item.done .task-checkbox::after {
-content: ‘✓’;
-font-size: 10px;
-color: #0e0e11;
-font-weight: 700;
-}
-
-.task-content { flex: 1; }
-.task-text {
+padding: 14px;
 font-size: 13px;
+line-height: 1.7;
 color: var(–text);
-line-height: 1.4;
+white-space: pre-wrap;
+font-family: inherit;
+margin-bottom: 10px;
 }
-.task-item.done .task-text {
-text-decoration: line-through;
-color: var(–muted);
-}
-
-/* note — first-person voice */
-.task-note {
-font-size: 11px;
-color: var(–muted);
-font-style: italic;
-margin-top: 2px;
-line-height: 1.35;
-}
-
-.task-deadline {
+.copy-btn {
 display: inline-flex;
 align-items: center;
-gap: 3px;
-margin-top: 5px;
-font-size: 10px;
-font-family: ‘DM Mono’, monospace;
-padding: 2px 8px;
-border-radius: 100px;
-font-weight: 500;
+gap: 6px;
+background: rgba(184,240,0,0.1);
+border: 1px solid rgba(184,240,0,0.25);
+color: var(–green);
+font-size: 12px;
+font-weight: 600;
+padding: 7px 14px;
+border-radius: 8px;
+cursor: pointer;
+transition: all 0.15s;
+font-family: inherit;
 }
-.deadline-urgent { background: rgba(241,65,53,0.1); color: #f14135; border: 1px solid rgba(241,65,53,0.2); }
-.deadline-warn { background: rgba(241,193,53,0.1); color: var(–accent2); border: 1px solid rgba(241,193,53,0.2); }
-.deadline-ok { background: rgba(200,241,53,0.08); color: var(–accent); border: 1px solid rgba(200,241,53,0.18); }
-.deadline-done { background: rgba(138,184,74,0.1); color: #8ab84a; border: 1px solid rgba(138,184,74,0.2); }
+.copy-btn:hover { background: rgba(184,240,0,0.18); }
+.copy-btn.copied { color: var(–yellow); border-color: rgba(240,192,0,0.3); background: rgba(240,192,0,0.1); }
 
-.section-label {
-font-size: 10px;
-font-family: ‘DM Mono’, monospace;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: var(–muted);
-padding: 6px 8px 3px;
+/* ── GRID ── */
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+gap: 10px;
+max-width: 900px;
+margin: 0 auto;
 }
 
-.reset-btn {
-display: block;
-margin: 20px auto 0;
+/* ── CARD ── */
+.card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: var(–radius);
+overflow: hidden;
+transition: border-color 0.2s, transform 0.15s;
+}
+.card:hover { transform: translateY(-2px); border-color: rgba(184,240,0,0.2); }
+.card.is-me { border-color: rgba(184,240,0,0.3); }
+
+.card-head {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 12px 14px;
+cursor: pointer;
+user-select: none;
+border-bottom: 1px solid transparent;
+transition: border-color 0.2s;
+}
+.card.open .card-head { border-bottom-color: var(–border); }
+
+.ava {
+width: 34px; height: 34px;
+border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+font-size: 13px; font-weight: 800;
+flex-shrink: 0;
+color: #0b0b0e;
+}
+
+.card-info { flex: 1; min-width: 0; }
+.card-name {
+font-size: 14px; font-weight: 600;
+display: flex; align-items: center; gap: 5px;
+}
+.me-tag {
+font-size: 9px;
+font-family: ‘SF Mono’, monospace;
+background: rgba(184,240,0,0.1);
+color: var(–green);
+border: 1px solid rgba(184,240,0,0.22);
+padding: 1px 5px; border-radius: 100px;
+text-transform: uppercase; letter-spacing: 0.05em;
+}
+.card-role { font-size: 11px; color: var(–muted); margin-top: 1px; }
+
+.card-right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.card-pct { font-size: 11px; font-family: ‘SF Mono’, monospace; color: var(–green); font-weight: 600; }
+.caret { font-size: 10px; color: var(–muted); transition: transform 0.2s; }
+.card.open .caret { transform: rotate(180deg); }
+
+/* ── TASKS ── */
+.tasks { display: none; padding: 6px 10px 10px; }
+.card.open .tasks { display: block; }
+
+.task {
+display: flex;
+align-items: flex-start;
+gap: 9px;
+padding: 9px 7px;
+border-radius: 9px;
+cursor: pointer;
+transition: background 0.12s;
+}
+.task:hover { background: var(–card2); }
+.task.done { opacity: 0.5; }
+
+.chk {
+width: 16px; height: 16px;
+border-radius: 4px;
+border: 1.5px solid var(–border);
+flex-shrink: 0; margin-top: 2px;
+display: flex; align-items: center; justify-content: center;
+transition: all 0.15s;
+font-size: 10px; font-weight: 800; color: #0b0b0e;
+}
+.task.done .chk { background: var(–green); border-color: var(–green); }
+
+.task-body { flex: 1; }
+.task-txt { font-size: 13px; line-height: 1.4; }
+.task.done .task-txt { text-decoration: line-through; color: var(–muted); }
+.task-note { font-size: 11px; color: var(–muted); font-style: italic; margin-top: 2px; line-height: 1.35; }
+.task.done .task-note { display: none; }
+
+.dl {
+display: inline-flex; align-items: center; gap: 3px;
+margin-top: 5px; font-size: 9.5px;
+font-family: ‘SF Mono’, monospace; font-weight: 500;
+padding: 2px 7px; border-radius: 100px;
+}
+.dl-r { background: rgba(240,64,64,0.1); color: var(–red); border: 1px solid rgba(240,64,64,0.2); }
+.dl-y { background: rgba(240,192,0,0.1); color: var(–yellow); border: 1px solid rgba(240,192,0,0.2); }
+.dl-g { background: rgba(184,240,0,0.07); color: var(–green); border: 1px solid rgba(184,240,0,0.18); }
+.dl-done { background: rgba(90,90,114,0.15); color: var(–muted); border: 1px solid var(–border); }
+
+.sect-lbl {font-size: 9px; font-family: ‘SF Mono’, monospace;
+text-transform: uppercase; letter-spacing: 0.1em;
+color: var(–muted); padding: 5px 7px 3px;
+}
+
+.reset {
+display: block; margin: 22px auto 0;
 background: transparent;
 border: 1px solid var(–border);
 color: var(–muted);
-padding: 7px 20px;
-border-radius: 100px;
-font-family: ‘DM Mono’, monospace;
-font-size: 11px;
-cursor: pointer;
-transition: all 0.2s;
+padding: 7px 18px; border-radius: 100px;
+font-size: 11px; font-family: ‘SF Mono’, monospace;
+cursor: pointer; transition: all 0.2s;
 }
-.reset-btn:hover { border-color: var(–accent); color: var(–accent); }
+.reset:hover { border-color: var(–green); color: var(–green); }
 </style>
 
 </head>
 <body>
 
 <div class="header">
-  <div class="tag">MUN · Internal Affairs · Оркен</div>
-  <h1>ТИМБИЛДИНГ<br><span>17–18 АПРЕЛЯ</span></h1>
-  <p class="subtitle">Астана · 15 человек · 19:00 — 00:00+</p>
+  <div class="chip">MUN · Internal Affairs · Оркен</div>
+  <div class="title">ТИМБИЛДИНГ<br><span class="green">17 АПРЕЛЯ</span></div>
+  <div class="sub">Астана · 15 человек · 19:00 — 00:00+</div>
   <div class="countdown">
-    <div class="countdown-item"><div class="countdown-num" id="cd-d">7</div><div class="countdown-label">дней</div></div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-item"><div class="countdown-num" id="cd-h">00</div><div class="countdown-label">часов</div></div>
-    <div class="countdown-sep">:</div>
-<div class="countdown-item"><div class="countdown-num" id="cd-m">00</div><div class="countdown-label">минут</div></div>
+    <div class="cd-item"><div class="cd-num" id="cdD">7</div><div class="cd-lbl">дней</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-item"><div class="cd-num" id="cdH">00</div><div class="cd-lbl">часов</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-item"><div class="cd-num" id="cdM">00</div><div class="cd-lbl">минут</div></div>
   </div>
 </div>
 
-<div class="progress-bar-wrap">
-  <div class="progress-meta">
-    <span>Мой прогресс как организатора</span>
-    <span id="global-pct">0%</span>
-  </div>
-  <div class="progress-track">
-    <div class="progress-fill" id="global-bar" style="width:0%"></div>
+<div class="prog-wrap">
+  <div class="prog-meta"><span>Общий прогресс</span><b id="pct">0%</b></div>
+  <div class="prog-track"><div class="prog-fill" id="bar" style="width:0%"></div></div>
+</div>
+
+<div class="tl-wrap">
+  <div class="tl-label-top">Дорожная карта</div>
+  <div class="tl">
+    <div class="tl-step active"><div class="tl-dot">📢</div><div class="tl-d">10–11 апр</div><div class="tl-n">Анонс</div></div>
+    <div class="tl-step active"><div class="tl-dot">💰</div><div class="tl-d">12 апр</div><div class="tl-n">Деньги</div></div>
+    <div class="tl-step"><div class="tl-dot">🏠</div><div class="tl-d">12 апр</div><div class="tl-n">Бронь</div></div>
+    <div class="tl-step"><div class="tl-dot">🎮</div><div class="tl-d">15–16 апр</div><div class="tl-n">Игры</div></div>
+    <div class="tl-step"><div class="tl-dot">🍚</div><div class="tl-d">17 апр</div><div class="tl-n">Еда</div></div>
+    <div class="tl-step"><div class="tl-dot">🎉</div><div class="tl-d">17 апр</div><div class="tl-n">Тимбилдинг!</div></div>
   </div>
 </div>
 
-<div class="timeline-wrap">
-  <div class="timeline-title">Дорожная карта</div>
-  <div class="timeline">
-    <div class="tl-step active" id="tl0">
-      <div class="tl-dot">📢</div>
-      <div class="tl-date">10–11 апр</div>
-      <div class="tl-label">Анонс<br>и сумма</div>
+<!-- ANONS BLOCK -->
+
+<div class="anons-card" id="anonsCard">
+  <div class="anons-header" onclick="toggleAnons()">
+    <div class="anons-header-left">
+      <span class="anons-icon">📢</span>
+      <div>
+        <div class="anons-title">Готовый анонс для Ассимы</div>
+        <div class="anons-sub">Скопировать и отправить в Telegram</div>
+      </div>
     </div>
-    <div class="tl-step" id="tl1">
-      <div class="tl-dot">💰</div>
-      <div class="tl-date">12 апр</div>
-      <div class="tl-label">Сбор<br>денег</div>
-    </div>
-    <div class="tl-step" id="tl2">
-      <div class="tl-dot">🏠</div>
-      <div class="tl-date">12 апр</div>
-      <div class="tl-label">Бронь<br>коттеджа</div>
-    </div>
-    <div class="tl-step" id="tl3">
-      <div class="tl-dot">🎮</div>
-      <div class="tl-date">15–16 апр</div>
-      <div class="tl-label">Игры<br>и призы</div>
-    </div>
-    <div class="tl-step" id="tl4">
-      <div class="tl-dot">🍚</div>
-      <div class="tl-date">17 апр</div>
-      <div class="tl-label">Заказ<br>еды</div>
-    </div>
-    <div class="tl-step" id="tl5">
-      <div class="tl-dot">🎉</div>
-      <div class="tl-date">17 апр</div>
-      <div class="tl-label">Тимбилдинг!</div>
-    </div>
+    <span class="anons-toggle">▼</span>
+  </div>
+  <div class="anons-body">
+    <div class="anons-text" id="anonsText">🎉 Internal Affairs Teambuilding 🎉
+
+Привет всем! Собираемся на тимбилдинг 🙌
+
+📅 17 апреля (четверг)
+🕖 Начало: 19:00
+🏠 Место: коттедж, Астана (адрес позже)
+
+Что ждёт:
+🍚 Плов + манты
+🎮 Игры и icebreakers
+🏆 Призы победителям
+🎵 Хорошая атмосфера
+
+💰 Взнос: [СУММА] тг с человека
+(еда, напитки, дом — всё включено)
+
+Деньги сдаём Саяту до 12 апреля 🙏
+
+Кто идёт → ✅
+Вопросы → @Orkен</div>
+<button class="copy-btn" id="copyBtn" onclick="copyAnons()">📋 Скопировать текст</button>
+
   </div>
 </div>
 
-<div class="persons-grid" id="grid"></div>
-<button class="reset-btn" onclick="resetAll()">Сбросить все галочки</button>
+<div class="grid" id="grid"></div>
+<button class="reset" onclick="resetAll()">Сбросить галочки</button>
 
 <script>
-const COLORS = ['#c8f135','#f1c135','#35c8f1','#f17c35','#c135f1','#35f1a0','#f13587'];
-const STORAGE_KEY = 'mun_tb_v2';
+var state = {};
 
-const people = [
+var COLORS = ['#b8f000','#f0c000','#00c8f0','#f07800','#b800f0','#00f0a0','#f00080'];
+
+var people = [
   {
     name: 'Оркен',
     me: true,
-    role: 'Хэд · Еда и напитки · Финал решений',
+    role: 'Хэд · Еда · Координация',
     tasks: [
-      {
-        text: 'Объявляю сумму взноса команде и даю отмашку Ассиме на анонс',
-        note: 'Говорю сумму → Ассима сразу шлёт анонс в Telegram',
-        deadline: '10 апр, сегодня', urgency: 'urgent'
-      },
-      {
-        text: 'Выбираю финальный вариант коттеджа из вариантов Даниала/Дарии/Дамиры',
-        note: 'Смотрю что они скинули, говорю "берём этот" и бронирую',
-        deadline: '12 апр', urgency: 'urgent'
-      },
-      {
-        text: 'Бронирую коттедж и оплачиваю после сбора денег',
-        note: 'Беру деньги у Саята → плачу хозяину',
-        deadline: '12 апр', urgency: 'urgent'
-      },
-      {
-        text: 'Заказываю еду с доставкой к дому — плов + манты (Карима Плов, доставка 24/7)',
-        note: 'Карима Плов: +7 700 884 00 00 — заказ на 18:30, 17 апр',
-        deadline: '16 апр', urgency: 'warn'
-      },
-      {
-        text: 'Заказываю напитки с доставкой (Kaspi магазин / Arbuz.kz)',
-        note: 'Газировка, вода, сок, чай — доставка к коттеджу к 18:30',
-        deadline: '16 апр', urgency: 'warn'
-      },
-      {
-        text: 'Веду всё мероприятие — icebreakers, игры, церемония наград',
-        note: 'Я — главный ведущий вечером. Подготовлюсь заранее.',
-        deadline: '17 апр, 19:00', urgency: 'ok'
-      },
+      { t: 'Объявляю сумму взноса и даю отмашку Ассиме на анонс', n: 'Говорю сумму → Ассима сразу шлёт в Telegram', d: '10 апр, сегодня', u: 'r' },
+      { t: 'Выбираю финальный вариант коттеджа из вариантов команды', n: 'Смотрю что скинули Даниал/Дария/Дамира → говорю "берём этот"', d: '12 апр', u: 'r' },
+      { t: 'Бронирую коттедж и оплачиваю после получения денег от Саята', n: 'Беру деньги → плачу хозяину → скидываю адрес всем', d: '12 апр', u: 'r' },
+      { t: 'Заказываю еду с доставкой к дому — плов + манты', n: 'Карима Плов: +7 700 884 00 00 · Доставка 24/7 · На 18:30, 17 апр', d: '16 апр', u: 'y' },{ t: 'Заказываю напитки и снэки с доставкой (Kaspi / Arbuz.kz)', n: 'Газировка, вода, сок, чай, чипсы — доставка к коттеджу к 18:30', d: '16 апр', u: 'y' },
+      { t: 'Веду мероприятие: icebreakers, игры, церемония наград', n: 'Я главный ведущий вечером. Сценарий подготовлю заранее.', d: '17 апр, 19:00', u: 'g' },
     ]
   },
   {
@@ -505,21 +427,9 @@ const people = [
     me: false,
     role: 'Анонс + Игры и icebreakers',
     tasks: [
-      {
-        text: 'Я прошу Ассиму отправить анонс в Telegram-чат сразу после того как объявляю сумму',
-        note: 'Текст анонса уже готов — скидываю ей.',
-        deadline: '10–11 апр', urgency: 'urgent'
-      },
-      {
-        text: 'Я прошу Ассиму с Гулим придумать 3–4 icebreaker-игры на вечер',
-        note: 'Who Knows Who, Would You Rather, Мафия — пусть выберут лучшее',
-        deadline: '15 апр', urgency: 'warn'
-      },
-      {
-        text: 'Я прошу Ассиму с Гулим распечатать красивые сертификаты для победителей',
-        note: 'Canva → шаблон сертификата → распечатать 5–7 шт с разными номинациями',
-        deadline: '16 апр', urgency: 'warn'
-      },
+      { t: 'Прошу Ассиму отправить анонс в Telegram сразу после объявления суммы', n: 'Готовый текст анонса — выше на этой странице', d: '10–11 апр', u: 'r' },
+      { t: 'Прошу Ассиму с Гулим придумать 3–4 icebreaker-игры на вечер', n: 'Who Knows Who, Would You Rather, Мафия — выбирают лучшие', d: '15 апр', u: 'y' },
+      { t: 'Прошу Ассиму с Гулим сделать красивые сертификаты для победителей', n: 'Canva → шаблон сертификата → распечатать 5–7 шт с номинациями', d: '16 апр', u: 'y' },
     ]
   },
   {
@@ -527,42 +437,19 @@ const people = [
     me: false,
     role: 'Игры и призы (с Ассимой)',
     tasks: [
-      {text: 'Я прошу Гулим помочь Ассиме подготовить сценарий игрового блока',
-        note: 'Блок 20:45 — 21:45: Icebreaker → Командная игра → Would You Rather',
-        deadline: '15 апр', urgency: 'warn'
-      },
-      {
-        text: 'Я прошу Гулим придумать смешные номинации для сертификатов',
-        note: 'Например: "Лучший дипломат", "Душа компании", "MVP вечера" и тд',
-        deadline: '15 апр', urgency: 'warn'
-      },
-      {
-        text: 'Я прошу Гулим взять с собой Bluetooth-колонку на случай если в доме нет аппаратуры',
-        note: 'Уточню у хозяина есть ли звук — если есть, колонка не нужна',
-        deadline: '17 апр', urgency: 'ok'
-      },
+      { t: 'Прошу Гулим подготовить сценарий игрового блока 20:45–21:45', n: 'Icebreaker → Командная игра → Would You Rather → Мафия', d: '15 апр', u: 'y' },
+      { t: 'Прошу Гулим придумать смешные номинации для сертификатов', n: '"Лучший дипломат", "Душа компании", "MVP вечера", "Самый тихий но ценный"', d: '15 апр', u: 'y' },
+      { t: 'Прошу Гулим взять Bluetooth-колонку на всякий случай', n: 'Уточню у хозяина — если есть своя аппаратура, колонка не нужна', d: '17 апр', u: 'g' },
     ]
   },
   {
     name: 'Саят',
     me: false,
-    role: 'Сбор денег',
+    role: 'Сбор денег с участников',
     tasks: [
-      {
-        text: 'Я прошу Саята начать собирать деньги сразу после выхода анонса',
-        note: 'Он пишет каждому лично или в чат — кто ещё не сдал',
-        deadline: '11 апр', urgency: 'urgent'
-      },
-      {
-        text: 'Я прошу Саята вести список: кто сдал, кто нет',
-        note: 'Таблица в телефоне или Google Sheets — чтобы видеть картину',
-        deadline: '12 апр', urgency: 'urgent'
-      },
-      {
-        text: 'Я прошу Саята передать мне все собранные деньги',
-        note: 'Получаю деньги → сразу бронирую коттедж',
-        deadline: '12 апр, до 18:00', urgency: 'urgent'
-      },
+      { t: 'Прошу Саята начать сбор сразу после выхода анонса', n: 'Пишет каждому лично + напоминает в чате кто не сдал', d: '11 апр', u: 'r' },
+      { t: 'Прошу Саята вести список — кто сдал, кто нет', n: 'Google Таблица или заметки в телефоне — чтобы видеть картину', d: '12 апр', u: 'r' },
+      { t: 'Прошу Саята передать мне все собранные деньги', n: 'Получаю деньги → сразу бронирую коттедж', d: '12 апр, до 18:00', u: 'r' },
     ]
   },
   {
@@ -570,21 +457,9 @@ const people = [
     me: false,
     role: 'Поиск коттеджа (с Дарией и Дамирой)',
     tasks: [
-      {
-        text: 'Я прошу Даниала найти 2–3 варианта коттеджа на krisha.kz',
-        note: 'Фильтр: дом / мероприятия / посуточно / Астана / свободно 17–18 апр',
-        deadline: '12 апр', urgency: 'urgent'
-      },
-      {
-        text: 'Я прошу его проверить что дата 17–18 апр свободна у хозяина',
-        note: 'Позвонить и уточнить — не просто написать',
-        deadline: '12 апр', urgency: 'urgent'
-      },
-      {
-        text: 'Я прошу Даниала скинуть мне ссылки + цену + контакт хозяина',
-        note: 'Целевая цена: 50 000–80 000 тг за сутки',
-        deadline: '12 апр', urgency: 'urgent'
-      },
+      { t: 'Прошу Даниала найти 2–3 варианта на krisha.kz', n: 'Фильтр: дом / мероприятия / посуточно / Астана / 17–18 апр', d: '12 апр', u: 'r' },
+      { t: 'Прошу проверить что дата 17–18 апреля свободна — позвонить хозяину', n: 'Не просто написать — именно позвонить и уточнить', d: '12 апр', u: 'r' },
+      { t: 'Прошу скинуть мне ссылку + цену + контакт хозяина', n: 'Целевая цена: 50 000–80 000 тг за ночь', d: '12 апр', u: 'r' },
     ]
   },
   {
@@ -592,16 +467,8 @@ const people = [
     me: false,
     role: 'Поиск коттеджа (с Даниалом и Дамирой)',
     tasks: [
-      {
-        text: 'Я прошу Дарию искать варианты параллельно с Даниалом',
-        note: 'Разные районы Астаны — левый берег, Юго-Восток, Косшы',
-        deadline: '12 апр', urgency: 'urgent'
-      },
-      {
-        text: 'Я прошу её сравнить варианты по цене, вместимости и наличию аппаратуры',
-        note: 'Идеально: зал на 20+ чел, музыка/аппаратура в стоимости',
-        deadline: '12 апр', urgency: 'urgent'
-      },
+      { t: 'Прошу Дарию искать варианты параллельно — разные районы Астаны', n: 'Левый берег, Юго-Восток, Косшы — чем больше вариантов тем лучше', d: '12 апр', u: 'r' },
+      { t: 'Прошу сравнить варианты: цена, вместимость, аппаратура, двор', n: 'Идеально: зал 20+ чел, музыка в стоимости, мангал или беседка', d: '12 апр', u: 'r' },
     ]
   },
   {
@@ -609,129 +476,143 @@ const people = [
     me: false,
     role: 'Поиск коттеджа (с Даниалом и Дарией)',
     tasks: [
-      {
-        text: 'Я прошу Дамиру сделать сравнительную таблицу вариантов коттеджей',
-        note: 'Адрес | Цена | Вместимость | Аппаратура | Контакт — в одном сообщении мне',
-        deadline: '12 апр', urgency: 'urgent'
-      },
-      {
-        text: 'Я прошу Дамиру позвонить хозяевам топ-2 вариантов и уточнить условия',
-        note: 'Можно ли торговаться? Есть ли депозит? Во сколько заезд?',
-        deadline: '12 апр', urgency: 'urgent'
-      },
+      { t: 'Прошу Дамиру собрать всё в одну таблицу и скинуть мне', n: 'Адрес | Цена | Вместимость | Аппаратура | Контакт — одним сообщением', d: '12 апр', u: 'r' },
+      { t: 'Прошу позвонить хозяевам топ-2 вариантов и уточнить условия', n: 'Можно торговаться? Есть депозит? Во сколько заезд/выезд?', d: '12 апр', u: 'r' },
     ]
-  },
+  }
 ];
 
-const STORAGE = (() => {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
-})();
-
-function save() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(STORAGE)); } catch {}
+function dlClass(u, done) {
+  if (done) return 'dl dl-done';
+  if (u === 'r') return 'dl dl-r';
+  if (u === 'y') return 'dl dl-y';
+  return 'dl dl-g';
+}
+function dlIcon(u, done) {
+  if (done) return '✓';
+  if (u === 'r') return '🔴';
+  if (u === 'y') return '🟡';
+  return '🟢';
 }
 
-function tid(pi, ti) { return ${pi}_${ti}; }
-
-function renderAll() {
-  const grid = document.getElementById('grid');
-  const open = [...grid.querySelectorAll('.person-card.open')].map(c => c.dataset.pi);
+function render() {
+  var grid = document.getElementById('grid');
+  var openCards = {};
+  grid.querySelectorAll('.card.open').forEach(function(c){ openCards[c.dataset.pi] = true; });
   grid.innerHTML = '';
 
-  let total = 0, done = 0;
+  var total = 0, done = 0;
 
-  people.forEach((person, pi) => {
-    const pDone = person.tasks.filter((_, ti) => STORAGE[tid(pi, ti)]).length;
-    const pTotal = person.tasks.length;
+  people.forEach(function(p, pi) {
+    var pDone = p.tasks.filter(function(_, ti){ return state[pi+'_'+ti]; }).length;
+    var pTotal = p.tasks.length;
     total += pTotal; done += pDone;
 
-    const color = COLORS[pi % COLORS.length];
-    const initials = person.name.slice(0, 2).toUpperCase();
+    var color = COLORS[pi % COLORS.length];
+    var initials = p.name.slice(0,2).toUpperCase();
+    var isOpen = openCards[pi] !== undefined;
 
-    const card = document.createElement('div');
-    card.className = person-card${person.
-me ? ' me' : ''}${open.includes(String(pi)) ? ' open' : ''};
-    card.dataset.pi = pi;
+    var tasksHtml = p.tasks.map(function(task, ti) {
+      var id = pi+'_'+ti;
+      var isDone = !!state[id];
+      return '<div class="task' + (isDone ? ' done' : '') + '" onclick="toggle(' + pi + ',' + ti + ')">' +
+        '<div class="chk">' + (isDone ? '✓' : '') + '</div>' +
+        '<div class="task-body">' +
+          '<div class="task-txt">' + task.t + '</div>' +
+          (task.n ? '<div class="task-note">' + task.n + '</div>' : '') +
+          '<span class="' + dlClass(task.u, isDone) + '">' + dlIcon(task.u, isDone) + ' до ' + task.d + '</span>' +
+        '</div>' +
+      '</div>';
+    }).join('');
 
-    card.innerHTML = `
-      <div class="person-header" onclick="toggleCard(${pi})">
-        <div class="avatar" style="background:${color}">${initials}</div>
-        <div class="person-info">
-          <div class="person-name">${person.name}${person.me ? '<span class="me-badge">я</span>' : ''}</div>
-          <div class="person-role">${person.role}</div>
-        </div>
-        <div class="person-progress">
-          <div class="mini-progress">${pDone}/${pTotal}</div>
-          <div class="chevron">▼</div>
-        </div>
-      </div>
-      <div class="tasks-list">
-        <div class="section-label">Мои задачи по этому человеку</div>
-        ${person.tasks.map((task, ti) => {
-          const id = tid(pi, ti);
-          const isDone = !!STORAGE[id];
-          const dc = isDone ? 'deadline-done' : deadline-${task.urgency};
-          const dp = isDone ? '✓ ' : task.urgency === 'urgent' ? '🔴 ' : task.urgency === 'warn' ? '🟡 ' : '🟢 ';
-          return `
-            <div class="task-item${isDone ? ' done' : ''}" onclick="toggle(${pi},${ti})">
-              <div class="task-checkbox"></div>
-              <div class="task-content">
-                <div class="task-text">${task.text}</div>
-                ${task.note ? <div class="task-note">${task.note}</div> : ''}
-                <span class="task-deadline ${dc}">${dp}до ${task.deadline}</span>
-              </div>
-            </div>`;
-        }).join('')}
-      </div>`;
-    grid.appendChild(card);
+    var html = '<div class="card' + (p.me ? ' is-me' : '') + (isOpen ? ' open' : '') + '" data-pi="' + pi + '">' +
+      '<div class="card-head" onclick="toggleCard(' + pi + ')">' +
+        '<div class="ava" style="background:' + color + '">' + initials + '</div>' +
+        '<div class="card-info">' +
+          '<div class="card-name">' + p.name + (p.me ? '<span class="me-tag">я</span>' : '') + '</div>' +
+          '<div class="card-role">' + p.role + '</div>' +
+        '</div>' +
+        '<div class="card-right">' +
+          '<span class="card-pct">' + pDone + '/' + pTotal + '</span>' +
+          '<span class="caret">▼</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="tasks">' +
+        '<div class="sect-lbl">Мои задачи</div>' +
+        tasksHtml +
+      '</div>' +
+    '</div>';
+
+    grid.insertAdjacentHTML('beforeend', html);
   });
 
-  const pct = total ? Math.round(done / total * 100) : 0;
-  document.getElementById('global-bar').style.width = pct + '%';
-  document.getElementById('global-pct').textContent = pct + '%';
+  var pct = total ? Math.round(done / total * 100) : 0;
+  document.getElementById('bar').style.width = pct + '%';
+  document.getElementById('pct').textContent = pct + '%';
 }
 
 function toggleCard(pi) {
-  const card = document.querySelector(`.person-card[data-pi="${pi}"]`);
-  card.classList.toggle('open');
+  var card = document.querySelector('.card[data-pi="' + pi + '"]');
+  if (card) card.classList.toggle('open');
 }
 
 function toggle(pi, ti) {
-  const id = tid(pi, ti);
-  STORAGE[id] = !STORAGE[id];
-  save();
-  renderAll();
-  setTimeout(() => {
-    const card = document.querySelector(`.person-card[data-pi="${pi}"]`);
+  var id = pi + '_' + ti;
+  state[id] = !state[id];
+  render();
+  setTimeout(function() {
+    var card = document.querySelector('.card[data-pi="' + pi + '"]');
     if (card) card.classList.add('open');
   }, 10);
 }
 
 function resetAll() {
-  if (confirm('Сбросить все галочки?')) {
-    Object.keys(STORAGE).forEach(k => delete STORAGE[k]);
-    save(); renderAll();
+  if (confirm('Сбросить все галочки?')) { state = {}; render(); }
+}
+
+function toggleAnons() {
+  document.getElementById('anonsCard').classList.toggle('open');
+}
+
+function copyAnons() {
+  var text = document.getElementById('anonsText').innerText;
+  var btn = document.getElementById('copyBtn');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function() {
+      btn.textContent = '✅ Скопировано!';
+      btn.classList.add('copied');
+      setTimeout(function(){ btn.textContent = '📋 Скопировать текст'; btn.classList.remove('copied'); }, 2000);
+    });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✅ Скопировано!';
+    btn.classList.add('copied');
+    setTimeout(function(){ btn.textContent = '📋 Скопировать текст'; btn.classList.remove('copied'); }, 2000);
   }
 }
 
-function updateCountdown() {
-  const diff = new Date('2026-04-17T19:00:00+06:00') - new Date();
-  if (diff <= 0) return;
-  document.getElementById('cd-d').textContent = Math.floor(diff / 86400000);
-  document.getElementById('cd-h').textContent = String(Math.floor(diff % 86400000 / 3600000)).padStart(2,'0');
-  document.getElementById('cd-m').textContent = String(Math.floor(diff % 3600000 / 60000)).padStart(2,'0');
+function tick() {
+  var diff = new Date('2026-04-17T19:00:00+06:00') - new Date();
+  if (diff > 0) {
+    document.getElementById('cdD').textContent = Math.floor(diff / 86400000);
+    document.getElementById('cdH').textContent = String(Math.floor(diff % 86400000 / 3600000)).padStart(2,'0');
+    document.getElementById('cdM').textContent = String(Math.floor(diff % 3600000 / 60000)).padStart(2,'0');
+  }
 }
 
-renderAll();
-updateCountdown();
-setInterval(updateCountdown, 30000);
+render();
+tick();
+setInterval(tick, 30000);
 
-// Open Оркен card by default
-setTimeout(() => {
-  const first = document.querySelector('.person-card');
-  if (first) first.classList.add('open');
-}, 50);
+// Open Оркен by default
+setTimeout(function(){ var c = document.querySelector('.card'); if(c) c.classList.add('open'); }, 30);
 </script>
 
 </body>
 </html>
+  
